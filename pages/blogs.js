@@ -1,4 +1,6 @@
+import API_URL from '../utils/constants'
 import Link from 'next/link'
+import axios from 'axios'
 
 export default function Blogs({ posts }) {
   const renderPosts = (posts) => posts.map(post => (
@@ -13,17 +15,16 @@ export default function Blogs({ posts }) {
   return (
     <div>Hello from blogs!
       <ul>
-        {renderPosts(posts)}
+        {posts ? renderPosts(posts) : <div>No posts availables</div>}
       </ul>
     </div>
   )
 }
 
-Blogs.getInitialProps = async() => {
+export async function getStaticProps() { // can receive context object
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
-    const json = await res.json()
-    return { posts: json }
+    const { data: posts } = await axios.get(`${API_URL}?_limit=10`)
+    return { props: { posts } }
   } catch (error) {
     console.log(error)
   }
