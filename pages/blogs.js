@@ -1,11 +1,11 @@
 import API_URL from '../utils/constants'
-import Link from 'next/link'
+import { Link } from '../routes'
 import axios from 'axios'
 
 export default function Blogs({ posts }) {
   const renderPosts = (posts) => posts.map(post => (
     <li key={post.id}>
-      <Link as={`/blogs/${post.id}`} href={'/blogs/[id]'}>
+      <Link route={`/blogs/${post.id}`} >
         <a>
           {post.title}
         </a>
