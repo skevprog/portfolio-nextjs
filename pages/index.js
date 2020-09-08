@@ -1,9 +1,12 @@
 import BaseLayout from '../components/layouts/BaseLayout'
+import { Container } from 'reactstrap'
 
 export default function Home() {
   return (
     <BaseLayout>
-      <div>Index page</div>
+      <Container>
+        <div>Index page</div>
+      </Container>
     </BaseLayout>
   )
 }
